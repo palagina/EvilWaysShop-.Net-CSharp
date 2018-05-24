@@ -1,0 +1,122 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication1.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <title><%: Page.Title %> </title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+a{color: #b30000; padding: 30px; font-size: large; font-weight: bold; }
+body{background-color: black; color: lightgray;}
+.fa {    padding: 20px;    font-size: 30px;    width: 70px;    text-align: center;    text-decoration: none;}
+.fa:hover {    opacity: 0.7;}
+.fa-facebook {    background: #3B5998;    color: white;}
+.fa-instagram {  background: #125688;  color: white;}
+        </style>
+
+
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+
+    <nav class="navbar navbar-expand-xl bg-dark text-danger">
+
+  <ul class="nav navbar-nav">
+    <li class="nav-item">
+      <a runat="server" href="~/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a runat="server" href="~/About">About</a>
+    </li>
+    <li class="nav-item">
+      <a runat="server" href="~/Contact">Contact</a>
+    </li>
+      <li class="nav-item">
+      <a runat="server" href="~/ProductList">Products</a>
+    </li>
+      <li class="nav-item">
+      <a runat="server" href="~/Order">Order</a>
+    </li>
+  </ul>
+</nav>
+      
+    
+        <div id="TitleContent" style="text-align: left">
+ <a runat="server"  style="width:100%" href="~/">
+ <asp:Image ID="Image1" runat="server"
+ImageUrl="~/Images/logo1.jpg" BorderStyle="None"/>
+ </a> 
+ <br />
+ </div>
+
+        <div id="CategoryMenu" style="text-align: center">
+ <asp:ListView ID="categoryList"
+ ItemType="WebApplication1.Models.Category"
+ runat="server"
+ SelectMethod="GetCategories" >
+ <ItemTemplate>
+ <b style="font-size: large; font-style: normal; color: darkred">
+ <a href="/ProductList.aspx?id=<%#: Item.CategoryID %>">
+ <%#: Item.CategoryName %>
+</a>
+ </b>
+ </ItemTemplate>
+ <ItemSeparatorTemplate> | </ItemSeparatorTemplate>
+ </asp:ListView>
+ </div>
+
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+
+
+            <footer>
+<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-instagram"></a>
+                <br />
+                <br />
+                <p>&copy; <%: DateTime.Now.Year %> - Evil Ways</p>
+            </footer>
+        </div>
+
+    </form>
+  
+</body>
+
+    
+</html>
